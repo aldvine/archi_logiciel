@@ -1,3 +1,5 @@
-afficheur2=tiers.Afficheur2
-afficheur=tiers.Afficheur
-person=tiers.Person
+afficheur2=appli.IAfficheur;tiers.Afficheur2
+afficheur=appli.IAfficheur;tiers.Afficheur
+afficheur3=appl.IAfficheur;tiers.Afficheur
+person=;tiers.Person
+

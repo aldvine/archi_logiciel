@@ -1,15 +1,18 @@
 package appli;
 
 
-import tiers.IAfficheur;
-import tiers.Loader;
+import java.util.List;
+
+import platform.Descriptor;
+import platform.Loader;
 import tiers.Person;
 public class Appli {
 	
 	IAfficheur monAfficheur; 
 	
 	public Appli() throws Exception {
-		this.monAfficheur = (IAfficheur) Loader.load(IAfficheur.class, "afficheur");
+		List<Descriptor> list = Loader.getDescriptor(IAfficheur.class);
+		System.out.println(list);
 	}
 
 	public void affiche(Person p) {
