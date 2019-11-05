@@ -1,0 +1,3 @@
+afficheur2=tiers.Afficheur2
+afficheur=tiers.Afficheur
+person=tiers.Person
