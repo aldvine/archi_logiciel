@@ -10,8 +10,10 @@ public class Main {
 	//6 Sur Afficheur clic droit -> refactor -> Extrat interface
 	public static void main(String[] args) throws Exception {
 		
-		Appli a  = new Appli();
-		
+		Appli a  = new Appli(0);
+		a.run();
+		Appli b  = new Appli(1);
+		b.run();
 	}
 	
 }
