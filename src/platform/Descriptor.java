@@ -1,25 +1,31 @@
 package platform;
 
+import java.util.List;
+
 public class Descriptor {
-	private String path;
+	private String id; 
+	private String className;
 	private String iface; // interface
 	private String name;
 	private String description;
-	private Boolean loaded; 
+	private String statut;
+	private List<String>  dependancies; 
 	
 
-	public Descriptor(String name, String path,String iface, String description) {
+	public Descriptor(String id, String className, String iface, String name, String description,
+			List<String> dependancies) {
 		super();
-		this.path = path;
+		this.id = id;
+		this.className = className;
 		this.iface = iface;
 		this.name = name;
-		this.loaded=false;
-		this.setDescription(description);
+		this.description = description;
+		this.dependancies = dependancies;
 	}
 
 	@Override
 	public String toString() {
-		return "Descriptor [path=" + path + ", name=" + name + ", description=" + description + "]";
+		return "Descriptor [path=" + className + ", name=" + name + ", description=" + description + "]";
 	}
 
 	public Descriptor() {
@@ -35,11 +41,11 @@ public class Descriptor {
 	}
 
 	public String getPath() {
-		return path;
+		return className;
 	}
 
 	public void setPath(String path) {
-		this.path = path;
+		this.className = path;
 	}
 
 	public String getDescription() {
@@ -58,12 +64,22 @@ public class Descriptor {
 		this.iface = iface;
 	}
 
-	public Boolean getLoaded() {
-		return loaded;
+	public String getClassName() {
+		return className;
 	}
 
-	public void setLoaded(Boolean loading) {
-		this.loaded = loading;
+	public void setClassName(String className) {
+		this.className = className;
 	}
+
+	public String getStatut() {
+		return statut;
+	}
+
+	public void setStatut(String statut) {
+		this.statut = statut;
+	}
+
+
 
 }

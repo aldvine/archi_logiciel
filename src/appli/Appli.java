@@ -4,15 +4,15 @@ package appli;
 import java.util.List;
 
 import platform.Descriptor;
-import platform.Loader;
+import platform.Platform;
 import tiers.Person;
 public class Appli {
 	
 	IAfficheur monAfficheur; 
 	
 	public Appli() throws Exception {
-		List<Descriptor> list = Loader.getDescriptor(IAfficheur.class);
-		monAfficheur = (IAfficheur) Loader.loadPlugin(list.get(0));
+		List<Descriptor> list = Platform.getDescriptor(IAfficheur.class);
+		monAfficheur = (IAfficheur) Platform.loadPlugin(list.get(0));
 //		System.out.println(test);
 	}
 

@@ -1,0 +1,5 @@
+id=2
+path=appli.IAfficheur;tiers.Afficheur2
+iface=appli.IAfficheur;tiers.Afficheur
+name=appl.IAfficheur;tiers.Afficheur
+dependances=appli.IAfficheur
