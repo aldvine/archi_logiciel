@@ -10,9 +10,9 @@ public class Appli {
 	
 	IAfficheur monAfficheur; 
 	
-	public Appli(int position) throws Exception {
+	public Appli() throws Exception {
 		List<Descriptor> list = Loader.getDescriptor(IAfficheur.class);
-		monAfficheur = (IAfficheur) Loader.loadPlugin(list.get(position));
+		monAfficheur = (IAfficheur) Loader.loadPlugin(list.get(0));
 //		System.out.println(test);
 	}
 
