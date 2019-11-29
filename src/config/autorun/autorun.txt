@@ -1,2 +1,2 @@
-1=data.txt
-2=data2.txt
+1=Afficheur1
+2=Modifier2

@@ -16,7 +16,7 @@ public class Platform {
 	@Deprecated
 	public static Object load(Class verifClass, String field) throws Exception {
 		
-		FileReader file = new FileReader("/src/appli/data.txt");
+		FileReader file = new FileReader("src/appli/data.txt");
 		Properties prop = new Properties();
 		prop.load(file);
 		
@@ -40,7 +40,7 @@ public class Platform {
 	/* Parse les fichiers de config en descriptor */
 	public static List<Descriptor> parseConfigFiles() throws Exception{
 		List<Descriptor> list = new ArrayList<Descriptor>();
-		File[] files = returnFiles("config/plugins");
+		File[] files = returnFiles("src/config/plugins");
 		
 		for( File f : files)
 		{
@@ -71,37 +71,29 @@ public class Platform {
 	}
 	
 	
-	
-	
-	public static List<Descriptor> getDescriptor(Class<?> choiceClass) throws Exception{
-		File repertoire = new File("path du rÃ©pertoire");
-		File[] files=repertoire.listFiles();
-		Properties prop = loadProperties("appli/data.txt");
-		List<Descriptor> list = new ArrayList<Descriptor>();
-		for (Entry<Object, Object> entry: prop.entrySet()) {
-			String[] parts = entry.getValue().toString().split("\\;");
-			if(parts[0].equals(choiceClass.getName())) {
-				
-				//TODO 
-				Descriptor current = new Descriptor(entry.getKey().toString(),parts[1],parts[0],"");
-				list.add(current);
-			}
-		}
-		return list;
-	}
-	
 	public static Object loadPlugin(Descriptor descriptor) throws Exception{
-		// si le plugin est dï¿½jï¿½ chargï¿½, on recharge pas
-		if(!descriptor.getLoaded()) {
-			Class <?> classe =	Class.forName(descriptor.getPath());
+		// si le plugin est deja charge on recharge pas
+		
+		if(descriptor.getStatut() != "loaded") {
+			Class <?> classe =	Class.forName(descriptor.getClassName());
 			Class <?> classeInterface =	Class.forName(descriptor.getIface());
 			Object  o = classe.newInstance();	
+			
 			if(classeInterface.isInstance(o)) {
-				descriptor.setLoaded(true);
+				// on garde le plugin charger pour pouvoir le recuperer plutot que de le charger une seconde fois
+				descriptor.setInstance(o); 
+				descriptor.setStatut("loaded");
+				System.out.println("Plugin "+descriptor.getName()+" chargé");
 				return o;
 			}else {
+				descriptor.setStatut("fail");
+				System.out.println("Erreur lors du chargement du plugin "+descriptor.getName()+", il n'implemente pas l'interface "+ descriptor.getIface() );
 				return null;
 			}
+		
+		}else if (descriptor.getStatut() == "loaded") {
+			System.out.println("Plugin "+descriptor.getName()+" déjà chargé");
+			return descriptor.getInstance();
 		}
 		return null;
 	}

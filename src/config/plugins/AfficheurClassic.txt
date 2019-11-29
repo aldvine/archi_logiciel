@@ -1,0 +1,6 @@
+id=Afficheur1
+className=tiers.AfficheurClassic
+iface=appli.IAfficheur
+name=afficheur Classic
+description=affichage simple
+dependancies=appli.IAfficheur

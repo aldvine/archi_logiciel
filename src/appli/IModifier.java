@@ -1,9 +1,9 @@
 package appli;
 
-import tiers.Person;
+import appli.Character;;
 
 public interface IModifier {
 
-	void Modifie(Person p);
+	void modifier(Character c);
 
 }

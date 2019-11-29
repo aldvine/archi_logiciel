@@ -1,0 +1,6 @@
+id=Afficheur2
+className=tiers.AfficheurUpgraded
+iface=appli.IAfficheur
+name=afficheurUpgraded
+description=Meilleur affichage
+dependancies=appli.IAfficheur

@@ -8,14 +8,14 @@ public class Descriptor {
 	private String iface; // interface
 	private String name;
 	private String description;
-	private String statut;
+	private String statut = "unload"; // loaded / fail / unload
 	private List<String>  dependancies; 
+	private Object instance; // instance du plugin si chargé
 	
 
-	public Descriptor(String id, String className, String iface, String name, String description,
-			List<String> dependancies) {
+	public Descriptor(String id, String className, String iface, String name, String description,List<String> dependancies) {
 		super();
-		this.id = id;
+		this.setId(id);
 		this.className = className;
 		this.iface = iface;
 		this.name = name;
@@ -40,11 +40,11 @@ public class Descriptor {
 		this.name = name;
 	}
 
-	public String getPath() {
+	public String getClassName() {
 		return className;
 	}
 
-	public void setPath(String path) {
+	public void setClassName(String path) {
 		this.className = path;
 	}
 
@@ -64,20 +64,28 @@ public class Descriptor {
 		this.iface = iface;
 	}
 
-	public String getClassName() {
-		return className;
-	}
-
-	public void setClassName(String className) {
-		this.className = className;
-	}
-
 	public String getStatut() {
 		return statut;
 	}
 
 	public void setStatut(String statut) {
 		this.statut = statut;
+	}
+
+	public Object getInstance() {
+		return instance;
+	}
+
+	public void setInstance(Object instance) {
+		this.instance = instance;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 

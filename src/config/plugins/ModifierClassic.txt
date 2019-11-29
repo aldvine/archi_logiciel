@@ -1,0 +1,6 @@
+id=Modifier1
+className=tiers.AfficheurClassic
+iface=appli.IModifier
+name=Modifieur Classic
+description=Augmente la sante 
+dependancies=appli.IModifier

@@ -1,9 +1,9 @@
 package appli;
 
-import tiers.Person;
+import appli.Character;
 
 public interface IAfficheur {
 
-	void affiche(Person p);
+	void affiche(Character c);
 
 }
