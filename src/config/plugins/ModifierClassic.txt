@@ -1,5 +1,5 @@
 id=Modifier1
-className=tiers.AfficheurClassic
+className=tiers.ModifierClassic
 iface=appli.IModifier
 name=Modifieur Classic
 description=Augmente la sante 
