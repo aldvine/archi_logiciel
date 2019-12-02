@@ -13,7 +13,7 @@ public class ModifierUpgraded implements IModifier {
 	@Override
 	public void modifier(Character c) {
 		c.setForce(c.getForce()+10);
-		c.setSante(c.getSante()+10);
+		c.setSante(c.getSante()+20);
 	}
 	
 }

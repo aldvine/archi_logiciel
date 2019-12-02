@@ -8,8 +8,13 @@ public class AfficheurUpgraded implements IAfficheur {
 
 	
 	@Override
-	public void affiche(Character c) {
-		System.out.println(c+" Affichage Upgraded");
+	public String affiche(Character c) {
+		return c.toString()+" Affichage Upgraded";
+	}
+	
+	@Override
+	public String afficheDetail(Character c1, Character c2) {
+		return "*****-----Detail-----***** \n "+c1.toString() + " \n "+ c2.toString();
 	}
 	
 }

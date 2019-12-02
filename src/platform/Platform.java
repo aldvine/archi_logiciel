@@ -66,7 +66,7 @@ public class Platform {
 				// on garde le plugin charger pour pouvoir le recuperer plutot que de le charger une seconde fois
 				descriptor.setInstance(o); 
 				descriptor.setStatut("loaded");
-				System.out.println("Plugin "+descriptor.getName()+" chargï¿½");
+				System.out.println("Plugin "+descriptor.getName()+" chargé");
 				return o;
 			}else {
 				descriptor.setStatut("fail");
@@ -75,7 +75,7 @@ public class Platform {
 			}
 		
 		}else if (descriptor.getStatut() == "loaded") {
-			System.out.println("Plugin "+descriptor.getName()+" dï¿½jï¿½ chargï¿½");
+			System.out.println("Plugin "+descriptor.getName()+" déjà chargé");
 			return descriptor.getInstance();
 		}
 		return null;

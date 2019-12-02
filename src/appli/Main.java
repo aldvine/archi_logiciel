@@ -10,8 +10,8 @@ public class Main {
 	// 6 Sur Afficheur clic droit -> refactor -> Extrat interface
 	public static void main(String[] args) throws Exception {
 		Appli app = new Appli();
-		Fenetre ihm = new Fenetre(app);
-		ihm.start();
+		app.run();
+
 	}
 
 }
