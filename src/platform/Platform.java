@@ -12,23 +12,6 @@ import java.util.Properties;
 public class Platform {
 	List<Descriptor> descriptors;
 	
-	// verifClass , permet de vï¿½rifier si la classe est la bonne
-	@Deprecated
-	public static Object load(Class verifClass, String field) throws Exception {
-		
-		FileReader file = new FileReader("src/appli/data.txt");
-		Properties prop = new Properties();
-		prop.load(file);
-		
-		String className = prop.getProperty(field);
-		Class <?> classe =	Class.forName(className);
-		Object  o = classe.newInstance();	
-		if(verifClass.isInstance(o)) {
-			return o;
-		}else {
-			return null;
-		}
-	}
 	public static File[] returnFiles(String path)
 	{
 		File repertoire = new File(path);
@@ -83,7 +66,7 @@ public class Platform {
 				// on garde le plugin charger pour pouvoir le recuperer plutot que de le charger une seconde fois
 				descriptor.setInstance(o); 
 				descriptor.setStatut("loaded");
-				System.out.println("Plugin "+descriptor.getName()+" chargé");
+				System.out.println("Plugin "+descriptor.getName()+" chargï¿½");
 				return o;
 			}else {
 				descriptor.setStatut("fail");
@@ -92,7 +75,7 @@ public class Platform {
 			}
 		
 		}else if (descriptor.getStatut() == "loaded") {
-			System.out.println("Plugin "+descriptor.getName()+" déjà chargé");
+			System.out.println("Plugin "+descriptor.getName()+" dï¿½jï¿½ chargï¿½");
 			return descriptor.getInstance();
 		}
 		return null;
