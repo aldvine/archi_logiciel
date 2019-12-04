@@ -1,5 +1,8 @@
 package appli;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,8 +11,10 @@ import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
 import platform.Descriptor;
@@ -46,20 +51,19 @@ public class Appli extends JFrame {
 	public Appli() throws Exception {
 		
 		this.setTitle("Plugins");
-		this.setSize(1000, 500);
+		this.setSize(1000,500);
 		this.setMinimumSize(this.getSize());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null); 	
 	 	
 		
 	 	JPanel menuCharacter = new JPanel();
-		menuCharacter.setLayout(new GridLayout(1,2));
+		menuCharacter.setLayout(new GridLayout(2,2));
 		
 		JPanel panel1 = new JPanel();
-		JPanel panel2 = new JPanel();
-	 	menuCharacter.add(panel1);
-	 	menuCharacter.add(panel2);
 	 	
+	 	JLabel labelP1 = new JLabel("Personnage 1");
+	 	panel1.add(labelP1);
 		panel1.add(charger1);
 		panel1.add(afficherP1);
 		panel1.add(modifierP1);
@@ -67,6 +71,9 @@ public class Appli extends JFrame {
 		afficherP1.addActionListener(new BoutonAfficherPersonnage());
 		modifierP1.addActionListener(new BoutonModifierPersonnage());
 		
+		JPanel panel2 = new JPanel();
+		JLabel labelP2 = new JLabel("Personnage 2");
+		panel2.add(labelP2);
 		panel2.add(charger2);
 		panel2.add(afficherP2);
 		panel2.add(modifierP2);
@@ -85,14 +92,22 @@ public class Appli extends JFrame {
 		actions.add(afficheDetailButton);
 		
 	 	// zone de texte
-	 	textArea.setRows(20);
 	 	textArea.setEditable(false);
 	 	affichage.setViewportView(textArea);
 	 	
 	 	
-//		afficheur.setFont(new Font("arial", Font.PLAIN, 12));
-	 	this.getContentPane().setLayout(new GridLayout(5,1)); 
-	 	
+	 	menuCharacter.add(panel1);
+	 	menuCharacter.add(panel2);
+	 	JLabel pluginModifier = new JLabel("Plugin Modifier : ");
+	 	panModifier.add(pluginModifier);
+	 	JLabel pluginAfficheur = new JLabel("Plugin Afficheur : ");
+	 	panAfficheur.add(pluginAfficheur);
+	 	JLabel pluginBattle = new JLabel("Plugin Confrontation : ");
+	 	panBattle.add(pluginBattle);
+
+	 	// voir si mieux avec des GroupLayout
+	 	GridLayout gridMain = new GridLayout(6,1);
+	 	this.getContentPane().setLayout(gridMain); 
 		this.getContentPane().add(menuCharacter);
 		this.getContentPane().add(actions);
 		this.getContentPane().add(affichage);
