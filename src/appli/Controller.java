@@ -107,7 +107,6 @@ public class Controller {
 
 		// chargement via la plateforme
 		plugin = Platform.loadPlugin(descriptor);
-		System.out.println(descriptor.getStatut());
 		if (plugin != null && descriptor.getStatut() == "loaded") {
 			view.afficheTexte("Plugin " + descriptor.getName() + " activé");
 		} else if (descriptor.getStatut() == "fail_interface") {
@@ -156,9 +155,12 @@ public class Controller {
 			if (c == null) {
 				view.afficheTexte("Le personnage n'est pas chargé !");
 			} else {
-				view.afficheTexte(monAfficheur.affiche(c));
+//				view.refreshFrame();
+				monAfficheur.affiche(view.getAfficheurJPanel(), c);
+				
 			}
 		}
+		view.refreshFrame();
 
 	}
 
@@ -172,7 +174,7 @@ public class Controller {
 			} else if (personnageTwo == null) {
 				view.afficheTexte("Le personnage 2 n'est pas chargé !");
 			} else {
-				view.afficheTexte(monAfficheur.afficheDetail(personnageOne, personnageTwo));
+				monAfficheur.afficheDetail(view.getAfficheurJPanel(),personnageOne, personnageTwo);
 			}
 		}
 	}
@@ -251,7 +253,7 @@ public class Controller {
 			if (arg0.getSource() == view.getCharger2())
 				personnageTwo = nouveauPersonnage;
 			view.afficheTexte("Génération d'un personnage");
-			affichePersonnage(nouveauPersonnage);
+//			affichePersonnage(nouveauPersonnage);
 		}
 	}
 

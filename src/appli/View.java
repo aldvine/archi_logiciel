@@ -49,8 +49,9 @@ public class View extends JFrame {
     private JLabel pluginAfficheur;
     private JLabel pluginBattle;
     private GridLayout gridMain;
+    private JPanel afficheurJPanel;
 
-    public View() throws Exception {
+	public View() throws Exception {
     	panModifier = new JPanel();
     	panBattle = new JPanel();
     	panAfficheur =new JPanel();
@@ -69,7 +70,7 @@ public class View extends JFrame {
 		labelP1 = new JLabel("Personnage 1");
 		labelP2 = new JLabel("Personnage 2");
 		battleButton = new Bouton("Confrontation");
-		afficheDetailButton = new Bouton("Afficher le détail");
+		afficheDetailButton = new Bouton("Afficher le dÃ©tail");
 		pluginModifier = new JLabel("Plugin Modifier : ");
 		pluginAfficheur = new JLabel("Plugin Afficheur : ");
 		pluginBattle = new JLabel("Plugin Confrontation : ");
@@ -101,7 +102,7 @@ public class View extends JFrame {
 		panel2.add(modifierP2);
 
 		
-		// action confrontation et afficher le détail des personnages
+		// action confrontation et afficher le dÃ©tail des personnages
 		Border borderActions= BorderFactory.createTitledBorder("Actions");
 		actions.setBorder(borderActions);
 		actions.add(battleButton);
@@ -109,8 +110,9 @@ public class View extends JFrame {
 		
 	 	// zone de texte visible
 	 	textArea.setEditable(false);
+	 	textArea.setRows(10);
 	 	affichage.setViewportView(textArea);
-		Border borderAffichage= BorderFactory.createTitledBorder("Affichage");
+		Border borderAffichage= BorderFactory.createTitledBorder("Informations");
 		affichage.setBorder(borderAffichage);
 	 	
 	 	
@@ -126,19 +128,30 @@ public class View extends JFrame {
 	 	Border borderPluginBattle= BorderFactory.createTitledBorder("Plugin Confrontation");
 	 	panBattle.setBorder(borderPluginBattle);
 	 	
+	 	afficheurJPanel = new JPanel();
+	 	Border borderAfficheur= BorderFactory.createTitledBorder("Afficheur");
+	 	afficheurJPanel.setBorder(borderAfficheur);
 	 	// ajout des partie de l'ihm
 	 	this.getContentPane().setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		this.getContentPane().add(menuCharacter);
+		this.getContentPane().add(afficheurJPanel);
 		this.getContentPane().add(actions);
 		this.getContentPane().add(affichage);
-		this.getContentPane().add(panModifier);
 		this.getContentPane().add(panAfficheur);
+		this.getContentPane().add(panModifier);
 		this.getContentPane().add(panBattle);
 		this.setVisible(true);
-        
-
 
     }
+
+    public JPanel getAfficheurJPanel() {
+		return afficheurJPanel;
+	}
+    
+	public void setAfficheurJPanel(JPanel afficheurJPanel) {
+		this.afficheurJPanel = afficheurJPanel;
+	}
+	
 	public JPanel getPanModifier() {
 		return panModifier;
 	}
@@ -326,6 +339,10 @@ public class View extends JFrame {
 		textArea.append(text);
 		textArea.append("\n");
 		affichage.getVerticalScrollBar().setValue(affichage.getVerticalScrollBar().getMaximum());
+	}
+	
+	public void refreshFrame() {
+		this.pack();
 	}
 	
 
