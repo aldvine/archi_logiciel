@@ -9,13 +9,18 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Properties;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 import platform.Descriptor;
 import platform.Platform;
@@ -35,13 +40,13 @@ public class Appli extends JFrame {
 	private JPanel panAfficheur = new JPanel();
 	private JPanel panBattle = new JPanel();
 	
-	Bouton charger1  = new Bouton("Charger Personnage 1") ;
- 	Bouton afficherP1  = new Bouton("Afficher P1") ;
- 	Bouton modifierP1  = new Bouton("Modifier P1") ;
+	Bouton charger1  = new Bouton("Charger") ;
+ 	Bouton afficherP1  = new Bouton("Afficher") ;
+ 	Bouton modifierP1  = new Bouton("Modifier") ;
  	
-	Bouton charger2  = new Bouton("Charger Personnage 2") ;
- 	Bouton modifierP2  = new Bouton("Modifier P2") ;
- 	Bouton afficherP2  = new Bouton("Afficher P2") ;
+	Bouton charger2  = new Bouton("Charger") ;
+ 	Bouton modifierP2  = new Bouton("Modifier") ;
+ 	Bouton afficherP2  = new Bouton("Afficher") ;
  	
  	JScrollPane affichage = new javax.swing.JScrollPane();
  	JTextArea textArea = new javax.swing.JTextArea();
@@ -58,12 +63,13 @@ public class Appli extends JFrame {
 	 	
 		
 	 	JPanel menuCharacter = new JPanel();
-		menuCharacter.setLayout(new GridLayout(2,2));
+	 	Border borderCharacter = BorderFactory.createTitledBorder("Les personnages");
+	 	menuCharacter.setBorder(borderCharacter);
 		
 		JPanel panel1 = new JPanel();
+		Border borderP1 = BorderFactory.createTitledBorder("Personnage 1");
+		panel1.setBorder(borderP1);
 	 	
-	 	JLabel labelP1 = new JLabel("Personnage 1");
-	 	panel1.add(labelP1);
 		panel1.add(charger1);
 		panel1.add(afficherP1);
 		panel1.add(modifierP1);
@@ -72,8 +78,8 @@ public class Appli extends JFrame {
 		modifierP1.addActionListener(new BoutonModifierPersonnage());
 		
 		JPanel panel2 = new JPanel();
-		JLabel labelP2 = new JLabel("Personnage 2");
-		panel2.add(labelP2);
+		Border borderP2 = BorderFactory.createTitledBorder("Personnage 2");
+		panel2.setBorder(borderP2);
 		panel2.add(charger2);
 		panel2.add(afficherP2);
 		panel2.add(modifierP2);
@@ -81,33 +87,39 @@ public class Appli extends JFrame {
 		afficherP2.addActionListener(new BoutonAfficherPersonnage());
 		modifierP2.addActionListener(new BoutonModifierPersonnage());
 		
-		JPanel actions = new JPanel();
 		
+		// action confrontation et afficher le détail des personnages
+		JPanel actions = new JPanel();
+		Border borderActions= BorderFactory.createTitledBorder("Actions");
+		actions.setBorder(borderActions);
 		Bouton battleButton  = new Bouton("Confrontation") ;
 		battleButton.addActionListener(new BoutonBattlePersonnage());
 		actions.add(battleButton);
-		
-		Bouton afficheDetailButton  = new Bouton("Afficher le détail") ;
+		Bouton afficheDetailButton  = new Bouton("Afficher détails personnages") ;
 		afficheDetailButton.addActionListener(new BoutonDetailPersonnage());
 		actions.add(afficheDetailButton);
 		
-	 	// zone de texte
+	 	// zone de texte visible
 	 	textArea.setEditable(false);
 	 	affichage.setViewportView(textArea);
+		Border borderAffichage= BorderFactory.createTitledBorder("Affichage");
+		affichage.setBorder(borderAffichage);
 	 	
 	 	
 	 	menuCharacter.add(panel1);
+	 	menuCharacter.add(new JSeparator());
 	 	menuCharacter.add(panel2);
-	 	JLabel pluginModifier = new JLabel("Plugin Modifier : ");
-	 	panModifier.add(pluginModifier);
-	 	JLabel pluginAfficheur = new JLabel("Plugin Afficheur : ");
-	 	panAfficheur.add(pluginAfficheur);
-	 	JLabel pluginBattle = new JLabel("Plugin Confrontation : ");
-	 	panBattle.add(pluginBattle);
-
-	 	// voir si mieux avec des GroupLayout
-	 	GridLayout gridMain = new GridLayout(6,1);
-	 	this.getContentPane().setLayout(gridMain); 
+	 	
+	 	// titre des parties de plugins
+	 	Border borderPluginModifier= BorderFactory.createTitledBorder("Plugin Modifier");
+	 	panModifier.setBorder(borderPluginModifier);
+	 	Border borderPluginAfficheur= BorderFactory.createTitledBorder("Plugin Afficheur");
+	 	panAfficheur.setBorder(borderPluginAfficheur);
+	 	Border borderPluginBattle= BorderFactory.createTitledBorder("Plugin Confrontation");
+	 	panBattle.setBorder(borderPluginBattle);
+	 	
+	 	// ajout des partie de l'ihm
+	 	this.getContentPane().setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		this.getContentPane().add(menuCharacter);
 		this.getContentPane().add(actions);
 		this.getContentPane().add(affichage);
