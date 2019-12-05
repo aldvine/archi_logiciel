@@ -1,7 +1,7 @@
 package tiers;
 
-import appli.IModifier;
 import appli.Character;
+import appli.IModifier;
 
 
 public class ModifierUpgraded implements IModifier {

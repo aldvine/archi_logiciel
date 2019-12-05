@@ -10,7 +10,7 @@ public class Descriptor {
 	private String description;
 	private String statut = "unload"; // loaded / fail / unload
 	private List<String>  dependancies; 
-	private Object instance; // instance du plugin si chargé
+	private Object instance; // instance du plugin si chargï¿½
 	
 
 	public Descriptor(String id, String className, String iface, String name, String description,List<String> dependancies) {

@@ -8,6 +8,7 @@ public class Character {
 	Integer agilite;
 	String origin;
 	String status;
+
 		
 	public Character(String nom, Integer sante, Integer force, Integer intelligence, Integer agilite, String origin,
 			String status) {
@@ -80,10 +81,11 @@ public class Character {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Character [nom=" + nom + ", sante=" + sante + ", force=" + force + ", intelligence=" + intelligence
 				+ ", agilite=" + agilite + ", origin=" + origin + ", status=" + status + "]";
 	}
+
 }

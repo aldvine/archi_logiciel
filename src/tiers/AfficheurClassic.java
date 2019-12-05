@@ -1,7 +1,7 @@
 package tiers;
 
-import appli.IAfficheur;
 import appli.Character;
+import appli.IAfficheur;
 
 public class AfficheurClassic implements IAfficheur {
 

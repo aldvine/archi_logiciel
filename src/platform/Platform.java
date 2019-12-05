@@ -1,12 +1,9 @@
 package platform;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
 
 public class Platform {
@@ -66,7 +63,7 @@ public class Platform {
 				// on garde le plugin charger pour pouvoir le recuperer plutot que de le charger une seconde fois
 				descriptor.setInstance(o); 
 				descriptor.setStatut("loaded");
-				System.out.println("Plugin "+descriptor.getName()+" chargé");
+				System.out.println("Plugin "+descriptor.getName()+" chargï¿½");
 				return o;
 			}else {
 				descriptor.setStatut("fail");
@@ -75,7 +72,7 @@ public class Platform {
 			}
 		
 		}else if (descriptor.getStatut() == "loaded") {
-			System.out.println("Plugin "+descriptor.getName()+" déjà chargé");
+			System.out.println("Plugin "+descriptor.getName()+" dï¿½jï¿½ chargï¿½");
 			return descriptor.getInstance();
 		}
 		return null;

@@ -2,5 +2,5 @@ id=Modifier2
 className=tiers.ModifierUpgraded
 iface=appli.IModifier
 name=Modifier Upgraded
-description=Augmente santé et force
+description=Augmente santï¿½ et force
 dependancies=appli.IModifier

@@ -24,7 +24,7 @@ public class Bouton extends JButton implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent event) {
-        // Inutile d'utiliser cette méthode ici
+        // Inutile d'utiliser cette m�thode ici
     }
 
     @Override

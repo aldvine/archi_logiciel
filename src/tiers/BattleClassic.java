@@ -8,7 +8,7 @@ public class BattleClassic implements IBattle {
 
 	/*
 	 * (non-Javadoc)
-	 * fait combattre 2 personnage, certaines caractéristique impacte le combat
+	 * fait combattre 2 personnage, certaines caractï¿½ristique impacte le combat
 	 */
 	@Override
 	public void battle(Character c1, Character c2) {
