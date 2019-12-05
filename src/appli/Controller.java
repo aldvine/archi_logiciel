@@ -52,12 +52,12 @@ public class Controller {
 	public void loadPluginsAutorun() throws Exception {
 		/*
 		 * Methode qui charge les plugins dans le fichier de config autorun.txt. Ce
-		 * fichier contient les id des plugins à charger au démarrage.
+		 * fichier contient les id des plugins Ã  charger au dÃ©marrage.
 		 */
-		view.afficheTexte("Chargement des plugins de démarrage...");
+		view.afficheTexte("Chargement des plugins de dÃ©marrage...");
 		Properties props = Platform.loadProperties("src/config/autorun/autorun.txt");
 		this.loadPluginsFrom(props);
-		view.afficheTexte("FIN Chargement des plugins de démarrage");
+		view.afficheTexte("FIN Chargement des plugins de dÃ©marrage");
 		view.afficheTexte("---------------------------------------");
 	}
 
@@ -100,19 +100,26 @@ public class Controller {
 	public Object loadPlugin(Descriptor descriptor) throws Exception {
 		Object plugin;
 		if (descriptor.getStatut() == "loaded") {
-			view.afficheTexte("Plugin " + descriptor.getName() + " déjà chargé");
+			view.afficheTexte("Plugin " + descriptor.getName() + " dï¿½jï¿½ chargï¿½");
 		} else {
 			view.afficheTexte("Chargement du plugin " + descriptor.getName());
 		}
 
 		// chargement via la plateforme
 		plugin = Platform.loadPlugin(descriptor);
-
-		if (!plugin.equals(null) && descriptor.getStatut() == "loaded") {
-			view.afficheTexte("Plugin " + descriptor.getName() + " activé");
-		} else if (descriptor.getStatut() == "fail") {
+		System.out.println(descriptor.getStatut());
+		if (plugin != null && descriptor.getStatut() == "loaded") {
+			view.afficheTexte("Plugin " + descriptor.getName() + " activÃ©");
+		} else if (descriptor.getStatut() == "fail_interface") {
 			view.afficheTexte("Erreur lors du chargement du plugin " + descriptor.getName()
-					+ ", il n'implemente pas l'interface " + descriptor.getIface());
+					+ ", l'interface " + descriptor.getIface() + " Ã  implementÃ© n'existe pas.");
+		}else if (descriptor.getStatut() == "fail_class") {
+				view.afficheTexte("Erreur lors du chargement du plugin " + descriptor.getName()
+						+ ", la classe " + descriptor.getClassName()+" n'existe pas.");
+		}else if (descriptor.getStatut() == "fail_implement") {
+			view.afficheTexte("Erreur lors du chargement du plugin "+descriptor.getName()+", il n'implemente pas l'interface "+ descriptor.getIface() );
+		}else {
+			view.afficheTexte("Une erreur inconnue est survenue.");
 		}
 		view.afficheTexte("---------------------------------------");
 		return plugin;
@@ -144,10 +151,10 @@ public class Controller {
 
 	public void affichePersonnage(Character c) {
 		if (monAfficheur == null) {
-			view.afficheTexte("Aucun afficheur n'est chargé !");
+			view.afficheTexte("Aucun afficheur n'est chargÃ© !");
 		} else {
 			if (c == null) {
-				view.afficheTexte("Le personnage n'est pas chargé !");
+				view.afficheTexte("Le personnage n'est pas chargÃ© !");
 			} else {
 				view.afficheTexte(monAfficheur.affiche(c));
 			}
@@ -158,12 +165,12 @@ public class Controller {
 	// affiche les infos des deux personnages
 	public void afficheDetail() {
 		if (monAfficheur == null) {
-			view.afficheTexte("Aucun afficheur n'est chargé !");
+			view.afficheTexte("Aucun afficheur n'est chargÃ© !");
 		} else {
 			if (personnageOne == null) {
-				view.afficheTexte("Le personnage 1 n'est pas chargé !");
+				view.afficheTexte("Le personnage 1 n'est pas chargÃ© !");
 			} else if (personnageTwo == null) {
-				view.afficheTexte("Le personnage 2 n'est pas chargé !");
+				view.afficheTexte("Le personnage 2 n'est pas chargÃ© !");
 			} else {
 				view.afficheTexte(monAfficheur.afficheDetail(personnageOne, personnageTwo));
 			}
@@ -176,13 +183,13 @@ public class Controller {
 
 	public void modifier(Character c) {
 		if (monModifier == null) {
-			view.afficheTexte("Aucun plugin Modifier n'est chargé !");
+			view.afficheTexte("Aucun plugin Modifier n'est chargÃ© !");
 		} else {
 			if (c == null) {
-				view.afficheTexte("Le personnage n'est pas chargé !");
+				view.afficheTexte("Le personnage n'est pas chargÃ© !");
 			} else {
 				monModifier.modifier(c);
-				view.afficheTexte("Le personnage a été modifié ! ");
+				view.afficheTexte("Le personnage a Ã©tÃ© modifiÃ© ! ");
 			}
 		}
 
@@ -190,12 +197,12 @@ public class Controller {
 
 	public void battle() {
 		if (monBattle == null) {
-			view.afficheTexte("Aucun plugin Battle n'est chargé !");
+			view.afficheTexte("Aucun plugin Battle n'est chargÃ© !");
 		} else {
 			if (personnageOne == null) {
-				view.afficheTexte("Le personnage 1 n'est pas chargé !");
+				view.afficheTexte("Le personnage 1 n'est pas chargÃ© !");
 			} else if (personnageTwo == null) {
-				view.afficheTexte("Le personnage 2 n'est pas chargé !");
+				view.afficheTexte("Le personnage 2 n'est pas chargÃ© !");
 			} else {
 				monBattle.battle(personnageOne, personnageTwo);
 				view.afficheTexte("Une confrontation a eu lieu ! ");
@@ -243,7 +250,7 @@ public class Controller {
 			}
 			if (arg0.getSource() == view.getCharger2())
 				personnageTwo = nouveauPersonnage;
-			view.afficheTexte("Génération d'un personnage");
+			view.afficheTexte("GÃ©nÃ©ration d'un personnage");
 			affichePersonnage(nouveauPersonnage);
 		}
 	}

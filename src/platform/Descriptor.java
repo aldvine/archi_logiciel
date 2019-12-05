@@ -8,7 +8,7 @@ public class Descriptor {
 	private String iface; // interface
 	private String name;
 	private String description;
-	private String statut = "unload"; // loaded / fail / unload
+	private String statut = "unload"; // loaded / fail_class / fail_interface / fail_implement / unload
 	private List<String>  dependancies; 
 	private Object instance; // instance du plugin si charg�
 	

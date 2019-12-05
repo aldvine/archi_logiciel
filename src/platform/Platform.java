@@ -55,22 +55,37 @@ public class Platform {
 		// si le plugin est deja charge on recharge pas
 		
 		if(descriptor.getStatut() != "loaded") {
-			Class <?> classe =	Class.forName(descriptor.getClassName());
-			Class <?> classeInterface =	Class.forName(descriptor.getIface());
-			Object  o = classe.newInstance();	
+			Class <?> classe ;
+			Class <?> classeInterface ;
 			
-			if(classeInterface.isInstance(o)) {
-				// on garde le plugin charger pour pouvoir le recuperer plutot que de le charger une seconde fois
-				descriptor.setInstance(o); 
-				descriptor.setStatut("loaded");
-				System.out.println("Plugin "+descriptor.getName()+" charg�");
-				return o;
-			}else {
-				descriptor.setStatut("fail");
-				System.out.println("Erreur lors du chargement du plugin "+descriptor.getName()+", il n'implemente pas l'interface "+ descriptor.getIface() );
+			try {
+				classe= Class.forName(descriptor.getClassName());
+				try {
+					classeInterface =Class.forName(descriptor.getIface());
+					
+					Object  o = classe.newInstance();	;
+					if(classeInterface.isInstance(o)) {
+						// on garde le plugin charger pour pouvoir le recuperer plutot que de le charger une seconde fois
+						descriptor.setInstance(o); 
+						descriptor.setStatut("loaded");
+						System.out.println("Plugin "+descriptor.getName()+" charg�");
+						return o;
+					}else {
+						descriptor.setStatut("fail_implement");
+						System.out.println("Erreur lors du chargement du plugin "+descriptor.getName()+", il n'implemente pas l'interface "+ descriptor.getIface() );
+						return null;
+					}
+
+				} catch (ClassNotFoundException e) {
+					descriptor.setStatut("fail_interface");
+					return null;
+				}
+				
+			} catch (ClassNotFoundException e) {
+				descriptor.setStatut("fail_class");
 				return null;
-			}
-		
+			}	
+					
 		}else if (descriptor.getStatut() == "loaded") {
 			System.out.println("Plugin "+descriptor.getName()+" d�j� charg�");
 			return descriptor.getInstance();
