@@ -1,0 +1,6 @@
+id=Modifier2
+className=tiers.ModifierUpgraded
+iface=appli.IModifier
+name=Modifier Upgraded
+description=Augmente sant� et force
+dependancies=appli.IModifier

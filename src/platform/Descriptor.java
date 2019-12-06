@@ -1,25 +1,31 @@
 package platform;
 
+import java.util.List;
+
 public class Descriptor {
-	private String path;
+	private String id; 
+	private String className;
 	private String iface; // interface
 	private String name;
 	private String description;
-	private Boolean loaded; 
+	private String statut = "unload"; // loaded / fail_class / fail_interface / fail_implement / unload
+	private List<String>  dependancies; 
+	private Object instance; // instance du plugin si charg�
 	
 
-	public Descriptor(String name, String path,String iface, String description) {
+	public Descriptor(String id, String className, String iface, String name, String description,List<String> dependancies) {
 		super();
-		this.path = path;
+		this.setId(id);
+		this.className = className;
 		this.iface = iface;
 		this.name = name;
-		this.loaded=false;
-		this.setDescription(description);
+		this.description = description;
+		this.dependancies = dependancies;
 	}
 
 	@Override
 	public String toString() {
-		return "Descriptor [path=" + path + ", name=" + name + ", description=" + description + "]";
+		return "Descriptor [path=" + className + ", name=" + name + ", description=" + description + "]";
 	}
 
 	public Descriptor() {
@@ -34,12 +40,12 @@ public class Descriptor {
 		this.name = name;
 	}
 
-	public String getPath() {
-		return path;
+	public String getClassName() {
+		return className;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setClassName(String path) {
+		this.className = path;
 	}
 
 	public String getDescription() {
@@ -58,12 +64,30 @@ public class Descriptor {
 		this.iface = iface;
 	}
 
-	public Boolean getLoaded() {
-		return loaded;
+	public String getStatut() {
+		return statut;
 	}
 
-	public void setLoaded(Boolean loading) {
-		this.loaded = loading;
+	public void setStatut(String statut) {
+		this.statut = statut;
 	}
+
+	public Object getInstance() {
+		return instance;
+	}
+
+	public void setInstance(Object instance) {
+		this.instance = instance;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
 
 }
