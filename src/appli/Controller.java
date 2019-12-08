@@ -2,8 +2,11 @@ package appli;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -29,6 +32,7 @@ public class Controller {
 		this.personnageTwo = personnageTwo;
 	}
 
+	// initialisation de la fenetre
 	public void initView() throws Exception {
 		this.view.getCharger1().addActionListener(new BoutonGenerateCharacter());
 		this.view.getCharger2().addActionListener(new BoutonGenerateCharacter());
@@ -77,6 +81,7 @@ public class Controller {
 		}
 	}
 
+	// assigne le plugin au bon objet
 	public void assign(Descriptor descriptor) throws Exception {
 		String Iface = descriptor.getIface();
 		switch (Iface) {
@@ -97,6 +102,7 @@ public class Controller {
 		}
 	}
 
+	// chargement du plugin via Platform et affichage des logs dans la partie informations
 	public Object loadPlugin(Descriptor descriptor) throws Exception {
 		Object plugin;
 		if (descriptor.getStatut() == "loaded") {
@@ -124,6 +130,7 @@ public class Controller {
 		return plugin;
 	}
 
+	// generation des boutons de plugins
 	public void genereBouton() {
 		for (Descriptor d : this.listPlugins) {
 			Bouton bouton = new Bouton(d.getName());
@@ -148,6 +155,7 @@ public class Controller {
 		}
 	}
 
+	// appel de la méthode affiche du plugin Afficheur
 	public void affichePersonnage(Character c) {
 		if (monAfficheur == null) {
 			view.afficheTexte("Aucun afficheur n'est chargé !");
@@ -179,10 +187,21 @@ public class Controller {
 		}
 	}
 
-	public Character generateCharacter() {
-		return new Character("Michel", 100, 100, 50, 100, "inconnu", "normal");
+	public Character generateCharacter(String name) {
+		//Nombre entre 10 et 150
+		Random randomGenerator = new Random();
+		ArrayList<Integer> nb = new ArrayList<Integer>();
+		int randomInt ;
+		Character c = new Character();
+		for (int i = 0; i < 4; i++) {
+			randomInt = randomGenerator.nextInt(150); 
+			nb.add(((randomInt + 9) / 10 ) * 10);	
+		}
+
+		return new Character(name, nb.get(0), nb.get(1), nb.get(2), nb.get(3), "inconnu", "normal");
 	}
 
+	// appel de la méthode modifier du plugin Modifier
 	public void modifier(Character c) {
 		if (monModifier == null) {
 			view.afficheTexte("Aucun plugin Modifier n'est chargé !");
@@ -197,6 +216,7 @@ public class Controller {
 
 	}
 
+	// appel de la méthode battle du plugin Battle
 	public void battle() {
 		if (monBattle == null) {
 			view.afficheTexte("Aucun plugin Battle n'est chargé !");
@@ -246,12 +266,11 @@ public class Controller {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			Character nouveauPersonnage = generateCharacter();
 			if (arg0.getSource() == view.getCharger1()) {
-				personnageOne = nouveauPersonnage;
+				personnageOne = generateCharacter("Player 1");
 			}
 			if (arg0.getSource() == view.getCharger2())
-				personnageTwo = nouveauPersonnage;
+				personnageTwo = generateCharacter("Player 2");
 			view.afficheTexte("Génération d'un personnage");
 //			affichePersonnage(nouveauPersonnage);
 		}
