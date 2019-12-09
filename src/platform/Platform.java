@@ -31,22 +31,26 @@ public class Platform {
 			String  name = prop.getProperty("name");
 			String dependancies = prop.getProperty("dependencies");
 			String description = prop.getProperty("description");
-			
 			List<String> dependanciesList = dependanciesToList(dependancies);
 			Descriptor current = new Descriptor(id,className,iface,name,description,dependanciesList);
-			list.add(current);
+			if(current.isComplete()){
+				list.add(current);
+			}
 		}
 		
 		return list;
 	}
+	
+	
 	public static List<String> dependanciesToList(String dependancies){
 		List<String> dependanciesList = new ArrayList<String>();
-		String[] dependanciesArray = dependancies.split("\\;");
-		for(String dependancy : dependanciesArray)
-		{
-			dependanciesList.add(dependancy);
+		if(dependancies != null) {
+			String[] dependanciesArray = dependancies.split("\\;");
+			for(String dependancy : dependanciesArray)
+			{
+				dependanciesList.add(dependancy);
+			}
 		}
-		
 		return dependanciesList;
 	}
 	

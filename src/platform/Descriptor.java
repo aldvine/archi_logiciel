@@ -94,6 +94,11 @@ public class Descriptor {
 	public void setDependencies(List<String> dependancies) {
 		this.dependencies = dependancies;
 	}
+	
+	// verifie si les infos minimum sont complétés
+	public Boolean isComplete() {
+		return (this.name!=null && this.iface!=null && this.className!=null && this.id!=null);
+	}
 
 
 
