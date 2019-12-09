@@ -106,7 +106,7 @@ public class Controller {
 	public Object loadPlugin(Descriptor descriptor) throws Exception {
 		Object plugin;
 		if (descriptor.getStatut() == "loaded") {
-			view.afficheTexte("Plugin " + descriptor.getName() + " d�j� charg�");
+			view.afficheTexte("Plugin " + descriptor.getName() + " déjà chargé");
 		} else {
 			view.afficheTexte("Chargement du plugin " + descriptor.getName());
 		}
