@@ -21,7 +21,7 @@ public class Controller {
 	IAfficheur monAfficheur;
 	IModifier monModifier;
 	IBattle monBattle;
-
+	
 	public Controller(View view, Character personnageOne, Character personnageTwo) {
 		super();
 		this.view = view;
@@ -97,8 +97,21 @@ public class Controller {
 		}
 	}
 
+<<<<<<< Updated upstream
+=======
+	public void loadDependencies(Descriptor descriptor) throws Exception {
+		// verification si pas de boucle infini sur les dépendances. 
+		for (String idPlugin : descriptor.getDependencies()) {
+			searchInListDescriptor(idPlugin);
+		}
+	}
+
+	// chargement du plugin via Platform et affichage des logs dans la partie informations
+>>>>>>> Stashed changes
 	public Object loadPlugin(Descriptor descriptor) throws Exception {
 		Object plugin;
+		loadDependencies(descriptor);
+			
 		if (descriptor.getStatut() == "loaded") {
 			view.afficheTexte("Plugin " + descriptor.getName() + " d�j� charg�");
 		} else {
@@ -122,6 +135,7 @@ public class Controller {
 		}
 		view.afficheTexte("---------------------------------------");
 		return plugin;
+		
 	}
 
 	public void genereBouton() {

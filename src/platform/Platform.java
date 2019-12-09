@@ -29,7 +29,7 @@ public class Platform {
 			String className = prop.getProperty("className");
 			String iface = prop.getProperty("iface");
 			String  name = prop.getProperty("name");
-			String dependancies = prop.getProperty("dependancies");
+			String dependancies = prop.getProperty("dependencies");
 			String description = prop.getProperty("description");
 			
 			List<String> dependanciesList = dependanciesToList(dependancies);
@@ -68,7 +68,7 @@ public class Platform {
 						// on garde le plugin charger pour pouvoir le recuperer plutot que de le charger une seconde fois
 						descriptor.setInstance(o); 
 						descriptor.setStatut("loaded");
-						System.out.println("Plugin "+descriptor.getName()+" charg�");
+						System.out.println("Plugin "+descriptor.getName()+" chargé");
 						return o;
 					}else {
 						descriptor.setStatut("fail_implement");
@@ -87,7 +87,7 @@ public class Platform {
 			}	
 					
 		}else if (descriptor.getStatut() == "loaded") {
-			System.out.println("Plugin "+descriptor.getName()+" d�j� charg�");
+			System.out.println("Plugin "+descriptor.getName()+" déjà chargé");
 			return descriptor.getInstance();
 		}
 		return null;

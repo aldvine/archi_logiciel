@@ -3,4 +3,4 @@ className=tiers.ModifierClassic
 iface=appli.IModifier
 name=Modifieur Classic
 description=Augmente la sante 
-dependancies=appli.IModifier
+dependencies=
