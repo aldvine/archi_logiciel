@@ -9,7 +9,7 @@ public class Descriptor {
 	private String name;
 	private String description;
 	private String statut = "unload"; // loaded / fail_class / fail_interface / fail_implement / unload
-	private List<String>  dependancies; 
+	private List<String>  dependencies; 
 	private Object instance; // instance du plugin si charg�
 	
 
@@ -20,7 +20,7 @@ public class Descriptor {
 		this.iface = iface;
 		this.name = name;
 		this.description = description;
-		this.dependancies = dependancies;
+		this.dependencies = dependancies;
 	}
 
 	@Override
@@ -86,6 +86,13 @@ public class Descriptor {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+	public List<String> getDependencies() {
+		return dependencies;
+	}
+
+	public void setDependencies(List<String> dependancies) {
+		this.dependencies = dependancies;
 	}
 
 

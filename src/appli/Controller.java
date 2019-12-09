@@ -64,6 +64,13 @@ public class Controller {
 		view.afficheTexte("FIN Chargement des plugins de démarrage");
 		view.afficheTexte("---------------------------------------");
 	}
+	
+	public void loadDependencies(Descriptor descriptor) throws Exception {
+		// verification si pas de boucle infini sur les dépendances. 
+		for (String idPlugin : descriptor.getDependencies()) {
+			searchInListDescriptor(idPlugin);
+		}
+	}
 
 	public void loadPluginsFrom(Properties props) throws Exception {
 		for (String idAutorun : props.stringPropertyNames()) {
@@ -105,6 +112,7 @@ public class Controller {
 	// chargement du plugin via Platform et affichage des logs dans la partie informations
 	public Object loadPlugin(Descriptor descriptor) throws Exception {
 		Object plugin;
+		loadDependencies(descriptor);
 		if (descriptor.getStatut() == "loaded") {
 			view.afficheTexte("Plugin " + descriptor.getName() + " déjà chargé");
 		} else {

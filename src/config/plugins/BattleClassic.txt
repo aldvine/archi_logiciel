@@ -3,4 +3,4 @@ className=tiers.BattleClassic
 iface=appli.IBattle
 name=Confrontation Normal
 description=Joue sur la force et l'agilite
-dependancies=appli.IBattle
+dependencies=Afficheur1
